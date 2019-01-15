@@ -1,0 +1,25 @@
+{
+  "name": "simple-map-cache",
+  "version": "1.0.0",
+  "description": "Simple npm module offering caching functionality using the native map object.",
+  "main": "cache.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdacjs/simple-map-cache.git"
+  },
+  "keywords": [
+    "cache",
+    "map"
+  ],
+  "author": "Juan Convers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webdacjs/simple-map-cache/issues"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
