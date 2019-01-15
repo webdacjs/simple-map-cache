@@ -15,7 +15,7 @@ $ npm install --save simple-map-cache
 
 ## Usage
 
-Please look at the index.test.js to see how the module can be used, but in a nutshell these are the methods available:
+Please look at the index.test.js file to check how the module can be used, but in a nutshell these are the methods available:
 
 `set,
 get,
