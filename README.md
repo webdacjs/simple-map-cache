@@ -1,7 +1,7 @@
 
 # Simple Map Cache
 
-This module a very simple key/value storage for node, so you can cache any operation, function or call results.
+This module a very simple key/value storage for node, so you can cache any operation, function or call results. The cache map persist after the module is reloaded (the map is stored in a JSON file)
 
 This used to be part of my module [simple-fetch-cache](https://www.npmjs.com/package/simple-fetch-cache), but I decided to extract it and publish it on its own. It doesn't have any external dependencies and it uses the native `Map` object to track the entries.
 
