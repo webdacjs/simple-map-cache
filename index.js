@@ -31,7 +31,6 @@ const getTTL = ttl => ttl ? ttl : defaultTTL
 const markTtlVal = (v, ttl) => ({val: v, ttl: getTTL(ttl), ts: Date.now()})
 
 const set = (k, v, ttl) => {
-  console.log(cacheMap)
   cacheMap.set(getCacheKey(k), markTtlVal(v, ttl))
 }
 
