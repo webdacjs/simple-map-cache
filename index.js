@@ -1,3 +1,4 @@
+const clean = require('get-clean-string')('-')
 const cacheMap = new Map()
 const defaultTTL = -1
 const cleanupMsec = 3600000 // 1h default cleanup
@@ -12,14 +13,11 @@ setInterval(() => {
   })
 }, cleanupMsec)
 
-const getHashCode = str => {
-  for (var i = 0, h = 0; i < str.length; i++) {
-    h = Math.imul(31, h) + str.charCodeAt(i) | 0
-  }
-  return h
+function getCacheKey (str) {
+  return str.constructor.name === 'String' ? clean(str) : clean(JSON.stringify(str))
 }
 
-const checkTTlVal = (entry, k) => {
+function checkTTlVal (entry, k) {
   if (!entry) return
   if (entry.ttl === -1 || (Date.now() - entry.ts) < entry.ttl) {
     return entry.val
@@ -32,11 +30,14 @@ const getTTL = ttl => ttl ? ttl : defaultTTL
 
 const markTtlVal = (v, ttl) => ({val: v, ttl: getTTL(ttl), ts: Date.now()})
 
-const set = (k, v, ttl) => { cacheMap.set(getHashCode(k), markTtlVal(v, ttl)) }
+const set = (k, v, ttl) => {
+  console.log(cacheMap)
+  cacheMap.set(getCacheKey(k), markTtlVal(v, ttl))
+}
 
-const get = k => checkTTlVal(cacheMap.get(getHashCode(k)), k)
+const get = k => checkTTlVal(cacheMap.get(getCacheKey(k)), k)
 
-const del = k => cacheMap.delete(getHashCode(k))
+const del = k => cacheMap.delete(getCacheKey(k))
 
 const clear = () => cacheMap.clear()
 
