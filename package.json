@@ -23,6 +23,6 @@
     "jest": "^23.6.0"
   },
   "dependencies": {
-    "jsonfile": "^5.0.0"
+    "jsonfile": "5.0.0"
   }
 }
