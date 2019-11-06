@@ -2,8 +2,10 @@ const cacheMap = new Map()
 const defaultTTL = -1
 const cleanupMsec = 3600000 // 1h default cleanup
 const jsonfile = require('jsonfile')
+const { version } = require('./package.json')
+const cacheFile = `./.tmpSmC_${version}_cache.json`
 
-jsonfile.readFile('./simpleCache.json')
+jsonfile.readFile(cacheFile)
   .then(cachedJson => {
     fillCacheFromJson(cachedJson)
   }).catch(() => {
@@ -33,11 +35,9 @@ function fillCacheFromJson (jsonOjb) {
 }
 
 function saveCacheToDisk () {
-  try {
-    jsonfile.writeFile('./simpleCache.json', [...cacheMap])
-  } catch (e) {
-    console.log('Impossible to write to the disk!')
-  }
+  jsonfile.writeFile(cacheFile, [...cacheMap]).catch(() => {
+    // Skipping step of writing to the disk
+  })
 }
 
 function getEncodedStr (str) {
