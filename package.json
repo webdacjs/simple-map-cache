@@ -23,7 +23,6 @@
     "jest": "^23.6.0"
   },
   "dependencies": {
-    "get-clean-string": "^2.2.0",
     "jsonfile": "^5.0.0"
   }
 }
