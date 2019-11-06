@@ -1,4 +1,4 @@
-const {set, get, del} = require('./index')
+const {set, get, del, clear} = require('./index')
 
 test(`Testing 'set' to add new entry to the cache`, () => {
   set('day', 'friday')
@@ -13,7 +13,7 @@ test(`Testing 'set' to add new entry to the cache using numbers`, () => {
 
 test(`Testing 'set' to add new entry to the cache using accents (removed)`, () => {
   set('acción', 'value')
-  expect(get('accion')).toBe('value')
+  expect(get('acción')).toBe('value')
 })
 
 test(`Testing 'set' to add new entry to the cache using an object`, () => {
@@ -52,3 +52,7 @@ test(`Testing deleting the existing 'day' entry`, () => {
   expect(get('day')).toBe(undefined)
 })
 
+test(`Testing clearing the whole cache`, () => {
+  clear()
+  expect(get('1234')).toBe(undefined)
+})
