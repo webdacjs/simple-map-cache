@@ -50,7 +50,7 @@ function getDecoded (enc) {
 }
 
 function checkTTlVal (entry, k) {
-  if (!entry) return {}
+  if (!entry) return { val: undefined, isStr: undefined }
   const { val, isStr, ts, ttl } = entry
   if (ttl === -1 || (Date.now() - ts) < ttl) {
     return { val, isStr }
@@ -78,9 +78,13 @@ function set (k, v, ttl) {
 }
 
 function get (k) {
-  const { val, isStr } = checkTTlVal(cacheMap.get(getEncodedStr(k)), k)
-  if (val) {
-    return isStr ? getDecoded(val) : JSON.parse(getDecoded(val))
+  try {
+    const { val, isStr } = checkTTlVal(cacheMap.get(getEncodedStr(k)), k)
+    if (val) {
+      return isStr ? getDecoded(val) : JSON.parse(getDecoded(val))
+    }
+  } catch (e) {
+    console.log(e.message)
   }
 }
 
